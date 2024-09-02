@@ -41,7 +41,7 @@ sudo docker-compose up -d
 
 `HEADER/{내용}` 
 
-e.g. `feature/login`
+e.g. `main`, `develop`, `feature/login`
 
 |HEADER|설명|
 |:--:|:--:|
@@ -55,7 +55,7 @@ e.g. `feature/login`
 
 `HEADER: {내용}` 
 
-e.g. `featre: 로그인 기능 구현`
+e.g. `feat: 로그인 기능 구현`
 
 |HEADER|설명|
 |:--:|:--:|
