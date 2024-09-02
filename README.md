@@ -1,17 +1,9 @@
-## 📌 프로젝트 소개
+## 프로젝트 소개
 
 FAST API 사용해 팀원의 이력서를 한 눈에 보는 웹 페이지 
 
-## 📌 프로젝트 선정 이유
 
-FAST API를 사용해 Python 역량을 기름
-
-Github를 사용해 추후의 협업에 대비
-
-추후 진행할 kubernetes 프로젝트에 배포할 소스 코드로 사용 가능
-
-
-## 📌 프로젝트 구조
+## 프로젝트 구조
 ```
 Jobboo/
 │  
@@ -24,7 +16,7 @@ Jobboo/
 ├── docker-compose.yml
 └── requirements.txt
 ```
-## 📌 환경설정
+## 환경설정
 
 requirements.txt
 ```
@@ -39,7 +31,13 @@ Local port : 8080
 Container port : 8080
 ```
 
-## 📌 브랜치 컨벤션
+## 서비스 동작
+
+```
+sudo docker-compose up -d
+```
+
+## 브랜치 컨벤션
 
 `HEADER/{내용}` 
 
@@ -53,7 +51,7 @@ e.g. `feature/login`
 |release|배포 전 QA(품질 보증)를 위한 브랜치. QA 완료 후 main에 merge|
 |hotfix|main 브랜치로 배포 후 버그가 생겼을 때 긴급 수정하는 브랜치|
 
-## 📌 커밋 컨벤션
+## 커밋 컨벤션
 
 `HEADER: {내용}` 
 
