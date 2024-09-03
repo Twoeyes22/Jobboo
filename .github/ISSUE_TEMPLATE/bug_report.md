@@ -1,39 +1,24 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
-labels: ''
+title: "[BUG]"
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-발생한 버그에 대해 명확하고 간결하게 설명해 주세요.
+## 버그 설명
 
-**To Reproduce**
-버그를 재현하기 위한 단계:
+(어떠한 버그인지 간결하게 설명해주세요)
 
-'...'로 이동
-'....'를 클릭
-'....'까지 스크롤
-오류 확인
+## 어떤 상황에서 발생한 버그인가요?
 
-**Expected behavior**
-원래 예상했던 정상적인 동작에 대해 명확하고 간결하게 설명해 주세요.
+(Given-When-Then 형식으로 자세히 서술해주세요)
 
-**Screenshots**
-가능하다면, 문제를 설명하는 데 도움이 되는 스크린샷을 첨부해 주세요.
+## 예상 결과
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+(본인이 예상했던 정상적인 결과에 대해 설명해주세요)
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## (선택) 참고 자료
 
-**Additional context**
-문제와 관련된 기타 정보가 있다면 여기에 추가해 주세요.
+(참고 자료가 있는 경우 추가하고 없는 경우 삭제해주세요)
