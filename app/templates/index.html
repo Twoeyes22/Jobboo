@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Main Page</h1>
+<div class="team-intro">
+    <h2>팀 소개</h2>
+    팀 소개 블라블라 Jobboo !!!!
+</div>
+<div class="team-members">
+    <!-- team_members 리스트를 순회하며 각 팀원의 정보 표시 -->
+    {% for member in team_members %}
+    <div class="member-slot">
+        <h3>{{ member.name }}</h3>
+        <!-- 팀원 이력서 페이지로 링크, 이미지 클릭 시 해당 페이지로 이동 -->
+        <a href="{{ url_for('resume', member_name=member.name.lower()) }}">
+            <img src="{{ url_for('static', path='/images/member_photos/' + member.image) }}" alt="{{ member.name }}">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif; /* 기본 폰트 설정 */
+    background: #ee9ca7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.team-members {
+    display: flex; /* Flexbox 레이아웃 사용 */
+    justify-content: space-around; /* 팀원 슬롯을 균등하게 분배 */
+    position: fixed; /* 화면 하단에 고정 */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25vh; /* 화면 높이의 25%를 차지 */
+}
+
+.member-slot {
+    text-align: center; /* 내용 중앙 정렬 */
+    width: 14%; /* 각 슬롯의 너비 (7명의 팀원을 위해 약 100/7%) */
+}
+
+.member-slot img {
+    max-width: 100%; /* 이미지가 슬롯을 벗어나지 않도록 설정 */
+    height: auto; /* 이미지 비율 유지 */
+}
+
+/* 추가 스타일을 여기에 작성할 수 있습니다 */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav-left, .nav-right {
+    font-family: Impact, Charcoal, sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: 3vw;
+}
+
+.nav-right {
+    margin-left: auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 10px;
+}
