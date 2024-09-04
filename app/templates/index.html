@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Main Page</h1>
-<div class="team-intro">
-    <h2>팀 소개</h2>
-    팀 소개 블라블라 Jobboo !!!!
+<div class="main-content">
+    <div class="center-content">
+        <!-- 변경: 이미지를 상단으로 이동하고 logo-container 클래스 추가 -->
+        <div class="logo-container">
+            <img src="{{ url_for('static', path='/images/team_logo.png') }}" alt="JOBBOO Logo" class="logo-image">
+        </div>
+        <!-- 변경: 'Main Page'를 'JOBBOO'로 변경 -->
+        <h1>JOBBOO</h1>
+        <div class="team-intro">
+            <h2>팀 소개</h2>
+            <p>팀 소개 블라블라 Jobboo !!!!</p>
+        </div>
+    </div>
 </div>
+
 <div class="team-members">
     <!-- team_members 리스트를 순회하며 각 팀원의 정보 표시 -->
     {% for member in team_members %}

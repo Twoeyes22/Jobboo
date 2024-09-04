@@ -3,7 +3,11 @@ body {
     background: #ee9ca7;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ffdde1, #ee9ca7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 뷰포트의 전체 높이를 사용 */
 }
 
 .team-members {
@@ -50,4 +54,44 @@ nav a {
     text-decoration: none;
     color: #333;
     margin: 0 10px;
+}
+
+.main-content {
+    flex: q; /* 남은 공간을 모두 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.logo-container {
+    margin-bottom: 5px;
+    width: 230px; /* 로고 컨테이너의 너비 설정 */
+    height: 180px; /* 높이를 너비의 2/3로 설정 (3:2 비율) */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 설정 */
+}
+
+.logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 컨테이너를 꽉 채우면서 비율 유지 */
+    object-position: center; /* 이미지를 중앙에 위치시킴 */
+}
+
+h1 {
+    font-size: 5em;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.center-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.team-intro {
+    margin-top: 20px;
 }
