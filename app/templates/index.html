@@ -22,7 +22,7 @@
     <div class="member-slot">
         <h3>{{ member.name }}</h3>
         <!-- 팀원 이력서 페이지로 링크, 이미지 클릭 시 해당 페이지로 이동 -->
-        <a href="{{ url_for('resume', member_name=member.name.lower()) }}">
+        <a href="{{ url_for('resume', member_name=member.name.lower()) }}" target="_blank">
             <img src="{{ url_for('static', path='/images/member_photos/' + member.image) }}" alt="{{ member.name }}">
         </a>
     </div>
