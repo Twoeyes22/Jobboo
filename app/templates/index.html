@@ -7,11 +7,11 @@
         <div class="logo-container">
             <img src="{{ url_for('static', path='/images/team_logo.png') }}" alt="JOBBOO Logo" class="logo-image">
         </div>
-        <!-- 변경: 'Main Page'를 'JOBBOO'로 변경 -->
+        <!-- 메인 타이틀 -->
         <h1>JOBBOO</h1>
         <div class="team-intro">
             <h2>팀 소개</h2>
-            <p>팀 소개 블라블라 Jobboo !!!!</p>
+            <p>DevOps의 숙명 Jobboo !!!!</p>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
     {% for member in team_members %}
     <div class="member-slot">
         <h3>{{ member.name }}</h3>
-        <!-- 팀원 이력서 페이지로 링크, 이미지 클릭 시 해당 페이지로 이동 -->
+        <!-- 팀원 이력서 페이지로 링크, 이미지 클릭 시 해당 페이지로 이동/ 신규 페이지 호출 -->
         <a href="{{ url_for('resume', member_name=member.name.lower()) }}" target="_blank">
             <img src="{{ url_for('static', path='/images/member_photos/' + member.image) }}" alt="{{ member.name }}">
         </a>
