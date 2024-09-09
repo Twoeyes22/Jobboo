@@ -1,0 +1,5 @@
+.DS_Store
+*.pyc
+
+app/__pycache__/
+app/routers/__pycache__/
