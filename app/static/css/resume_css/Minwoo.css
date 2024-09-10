@@ -1,0 +1,132 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-left: 25%; /* 사이드바 너비만큼 패딩 추가 */
+}
+
+.container-fluid {
+    padding-left: 0; /* 컨테이너의 왼쪽 패딩 제거 */
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #a8d8ea;
+    color: #333 !important;
+    padding: 2rem;
+}
+
+main {
+    width: 100%;
+    padding: 2rem;
+}
+
+.bg-primary {
+    background-color: #a8d8ea !important;
+}
+
+.border-bottom {
+    border-color: #71c9ce !important;
+}
+
+.table-primary {
+    background-color: #e6f3ff !important;
+}
+
+aside a {
+    color: #3b6978 !important;
+}
+
+aside a:hover {
+    color: #204051 !important;
+}
+
+/* 프로필 이미지 스타일 */
+.profile-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.project-header th,
+.project-header td,
+.table-primary th {
+    vertical-align: middle;
+}
+
+.accordion-button {
+    padding: 0.5rem;
+    background-color: transparent;
+    width: 100%;
+    text-align: left;
+    color: #333;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #0066cc;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-body {
+    background-color: #f8f9fa;
+}
+
+.list-group-item {
+    background-color: transparent;
+}
+
+/* 테이블 스타일 통일 */
+.table > :not(caption) > * > * {
+    padding: 0.5rem;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-left: 0;
+    }
+
+    aside {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    .accordion-button {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .accordion-button .ms-auto {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
