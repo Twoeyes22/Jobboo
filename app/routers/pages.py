@@ -10,7 +10,7 @@ templates = Jinja2Templates(directory="templates")
 # 팀원 정보를 담은 리스트, DB를 사용해보자!
 team_members = [
     {"name": "Seoyeon", "image": "Seoyeon.jpg", "resume": "Seoyeon.html"},
-    {"name": "Minwoo", "image": "Minwoo.png", "resume": "Minwoo.html"},
+    {"name": "Minwoo", "image": "minwoo.png", "resume": "minwoo.html"},
     {"name": "Hongjip", "image": "Hongjip.jpg", "resume": "Hongjip.html"},
     {"name": "Gwangjin", "image": "Gwangjin.jpg", "resume": "Gwangjin.html"},
     {"name": "Boyeong", "image": "Boyeong.jpg", "resume": "Boyeong.html"},

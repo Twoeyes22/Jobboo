@@ -2,10 +2,19 @@
 
 {% block content %}
 <div class="main-content">
+    <!-- 팀 선택 섹션 추가 -->
+    <div class="team-selection">
+        <h3>팀 선택</h3>
+        <div class="team-buttons">
+            <button class="team-button">Jobboo</button>
+            <button class="team-button">2조</button>
+            <button class="team-button">4조</button>
+        </div>
+    </div>
     <div class="center-content">
         <!-- 변경: 이미지를 상단으로 이동하고 logo-container 클래스 추가 -->
         <div class="logo-container">
-            <img src="{{ url_for('static', path='/images/team_logo.png') }}" alt="JOBBOO Logo" class="logo-image">
+            <img src="{{ url_for('static', path='/images/team_logo/jobboo_logo.png') }}" alt="JOBBOO Logo" class="logo-image">
         </div>
         <!-- 메인 타이틀 -->
         <h1>JOBBOO</h1>
@@ -23,7 +32,7 @@
         <h3>{{ member.name }}</h3>
         <!-- 팀원 이력서 페이지로 링크, 이미지 클릭 시 해당 페이지로 이동/ 신규 페이지 호출 -->
         <a href="{{ url_for('resume', member_name=member.name.lower()) }}" target="_blank">
-            <img src="{{ url_for('static', path='/images/member_photos/' + member.image) }}" alt="{{ member.name }}">
+            <img src="{{ url_for('static', path='/images/user_photos/' + member.image) }}" alt="{{ member.name }}">
         </a>
     </div>
     {% endfor %}
