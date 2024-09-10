@@ -1,3 +1,18 @@
-fastapi==0.100.0
-uvicorn==0.22.0
-jinja2==3.1.2
+fastapi==0.100.0  # 대장
+uvicorn==0.22.0  # 빌드 툴
+jinja2==3.1.2   # 템플릿
+sqlalchemy==1.4.40 # ORM
+pymysql==1.0.2   # mysql 드라이버
+pytest==8.3.2     # 테스트 도구
+pydantic==1.10.9  # Json 변환 직렬화 역직렬화 
+httpx==0.24.1
+python-dotenv     # 코드에 env 변수 필요할때 
+python-multipart # 파일 업로드 할때 필요한 
+aiofiles # 파일 입출력 비동기 가능하게
+
+
+# alembic
+# aiomysql
+
+# sqlalchemy[asyncio]
+# cryptography==40.0.1
