@@ -122,3 +122,26 @@ h1 {
     border: none;
     cursor: pointer;
 }
+
+/*임시추가*/
+.user-create-button-container {
+    text-align: center;
+    margin-top: 100px;
+    position: absolute; 
+    right: 20px; 
+}
+
+.user-create-button-container .btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.user-create-button-container .btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
