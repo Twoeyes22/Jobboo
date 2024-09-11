@@ -11,8 +11,8 @@ python-multipart # 파일 업로드 할때 필요한
 aiofiles # 파일 입출력 비동기 가능하게
 
 
-alembic
-aiomysql
+alembic # SQLAlchemy를 위한 데이터베이스 마이그레이션 도구로, 스키마 변경을 버전 관리
+aiomysql # 비동기 MySQL 데이터베이스 지원을 제공하는 라이브러리
 
-sqlalchemy[asyncio]
-cryptography==40.0.1
+sqlalchemy[asyncio] # SQLAlchemy의 비동기 지원 모듈로, 비동기 I/O를 사용하여 데이터베이스 작업을 수행
+cryptography==40.0.1 # 암호화와 관련된 보안 작업을 수행할 수 있는 라이브러리
