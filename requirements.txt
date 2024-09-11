@@ -2,7 +2,7 @@ fastapi==0.100.0  # 대장
 uvicorn==0.22.0  # 빌드 툴
 jinja2==3.1.2   # 템플릿
 sqlalchemy==1.4.40 # ORM
-pymysql==1.0.2   # mysql 드라이버
+#pymysql==1.0.2   # mysql 드라이버
 pytest==8.3.2     # 테스트 도구
 pydantic==1.10.9  # Json 변환 직렬화 역직렬화 
 httpx==0.24.1
@@ -15,4 +15,4 @@ alembic # SQLAlchemy를 위한 데이터베이스 마이그레이션 도구로, 
 aiomysql # 비동기 MySQL 데이터베이스 지원을 제공하는 라이브러리
 
 sqlalchemy[asyncio] # SQLAlchemy의 비동기 지원 모듈로, 비동기 I/O를 사용하여 데이터베이스 작업을 수행
-cryptography==40.0.1 # 암호화와 관련된 보안 작업을 수행할 수 있는 라이브러리
+cryptography==40.0.1 # 암호화와 관련된 보안 작업을 수행할 수 있는 라이브러리shi
