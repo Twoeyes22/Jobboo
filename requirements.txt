@@ -15,4 +15,4 @@ alembic # SQLAlchemy를 위한 데이터베이스 마이그레이션 도구로, 
 aiomysql # 비동기 MySQL 데이터베이스 지원을 제공하는 라이브러리
 
 sqlalchemy[asyncio] # SQLAlchemy의 비동기 지원 모듈로, 비동기 I/O를 사용하여 데이터베이스 작업을 수행
-cryptography==40.0.1 # 암호화와 관련된 보안 작업을 수행할 수 있는 라이브러리shi
+cryptography==40.0.1 # 암호화와 관련된 보안 작업을 수행할 수 있는 라이브러리
