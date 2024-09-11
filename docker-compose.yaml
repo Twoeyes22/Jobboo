@@ -7,24 +7,31 @@ services:
       - "8080:8080"
     volumes:
       - ./app:/app
-      - ./config/DB.env:/app/DB.env
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+      - ./config/.env:/app/.env  # 호스트의 .env 파일을 컨테이너의 /app/.env로 마운트
+    environment:
+      - MYSQL_HOST=db
+    env_file:
+      - ./config/.env  # 환경 변수를 .env 파일에서 로드
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
 
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     env_file:
-      - ./config/DB.env
+      - ./config/.env
     volumes:
       - ./mysql:/var/lib/mysql
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   app_data:
