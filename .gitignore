@@ -6,4 +6,4 @@ app/routers/__pycache__/
 
 mysql/
 app/.env
-.env
+config/.env
