@@ -28,6 +28,13 @@ async def home(request: Request, db: AsyncSession = Depends(get_db)):
         first_team = None
         team_members = []
 
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "teams": teams,
+        "current_team": first_team,
+        "team_members": team_members
+    })
+
 @router.get("/user/{user_id}")
 async def team_info(user_id: int, db: AsyncSession = Depends(get_db)):
     query = select(User).where(User.u_id == user_id)
@@ -44,12 +51,6 @@ async def team_info(user_id: int, db: AsyncSession = Depends(get_db)):
         "u_email": user.u_email,
         "u_git": user.u_git
     }
-    return templates.TemplateResponse("index.html", {
-        "request": request,
-        "teams": teams,
-        "current_team": first_team,
-        "team_members": team_members
-    })
 
 @router.get("/team/{team_id}")
 async def team_page(request: Request, team_id: int, db: AsyncSession = Depends(get_db)):

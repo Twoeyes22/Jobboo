@@ -30,7 +30,10 @@
 <div class="team-members">
     {% for member in team_members %}
     <div class="member-slot">
-        <h3>{{ member.u_name }}</h3>
+        <!-- <h3>{{ member.u_name }}</h3> -->
+        <h3>
+            <a href="#" onclick="openModal({{ member.u_id }})">{{ member.u_name }}</a>
+        </h3>
         <a href="{{ url_for('resume', user_id=member.u_id) }}" target="_blank">
             <img src="{{ url_for('static', path=member.u_image) }}" alt="{{ member.u_name }}">
         </a>
@@ -38,9 +41,15 @@
     {% endfor %}
 </div>
 
-<script>
-function loadTeam(teamId) {
-    window.location.href = `/team/${teamId}`;
-}
-</script>
+ <!-- 사용자 정보 카드 -->
+ <div id="userModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="user-name"></h2>
+        <p><strong>Nickname:</strong> <span id="user-nickname"></span></p>
+        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <p><strong>GitHub:</strong> <span id="user-git"></span></p>
+    </div>
+</div>
+
 {% endblock %}
