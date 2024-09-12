@@ -1,17 +1,33 @@
-// 이 파일은 클라이언트 측 JavaScript 로직을 포함합니다.
-// 예를 들어, 팀원 슬롯 클릭 시 애니메이션 효과를 추가할 수 있습니다:
+function loadTeam(teamId) {
+    window.location.href = `/team/${teamId}`;
+}
 
-/*
-document.querySelectorAll('.member-slot').forEach(slot => {
-    slot.addEventListener('click', function() {
-        // 클릭 시 애니메이션 또는 확대 효과 적용
-        this.classList.add('expanded');
-        // 페이지 전환 전 지연 시간 설정 (예: 500ms)
-        setTimeout(() => {
-            window.location = this.querySelector('a').href;
-        }, 500);
-    });
-});
-*/
+// 유저 카드 열기
+function openModal(userId) {
+    // API 호출
+    fetch(`/api/user/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                // 데이터를 모달에 채워넣기
+                document.getElementById('user-name').innerText = data.u_name;
+                document.getElementById('user-nickname').innerText = data.u_nickname;
+                document.getElementById('user-email').innerText = data.u_email;
+                document.getElementById('user-git').innerText = data.u_git;
+                
+                // 모달 표시
+                document.getElementById('userModal').style.display = "block";
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user info:', error);
+            alert('Failed to load user info.');
+        });
+}
 
-// 필요에 따라 추가 기능을 구현할 수 있습니다.
+// 유저 카드 닫기
+function closeModal() {
+    document.getElementById('userModal').style.display = "none";
+}

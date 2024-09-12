@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel = "stylesheet" href = "style.css"/> -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        div {
+            width: 100%;
+        }
+        
+        table {
+            width: 850px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        table td, table th {
+            border: 2px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+        
+        table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        table td:first-child {
+            width: 15%;
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+        
+        table tr td:nth-child(2) {
+            width: 20%;
+        }
+        
+        table tr td:nth-child(3) {
+            width: 65%;
+        }
+        
+        table tr td[rowspan] {
+            background-color: #f7f7f7;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        img {
+            float: right;
+        }
+    </style>
+    <title>이력서</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+               <td>이력서</td>
+               <th rowspan="2">
+                    <img
+                        src="./kwangjin.jpg"
+                        width="180"
+                        height="180"
+                    />
+               </th>
+            </tr>
+            <tr>
+                <td>최광진</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2">
+            <tr>
+                <td rowspan="5">인적사항</td>
+                <td>성명</td>
+                <td>최광진</td>
+            </tr>
+            <tr>
+                <td>생년월일</td>
+                <td>990220</td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>경기도 파주시 금촌동</td>
+            </tr>
+            <tr>
+                <td>휴대전화</td>
+                <td>010-1234-1234</td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td>rhkdwls1999@naver.com</td>
+            </tr>
+            <tr>
+                <td rowspan="3">학력사항</td>
+                <td colspan="2">광운대학교 졸업</td>
+            </tr>
+            <tr>
+                <td>학과</td>
+                <td>컴퓨터정보공학부</td>
+            </tr>
+            <tr>
+                <td>기간</td>
+                <td>2018.03~2024.02</td>
+            </tr>
+            <tr>
+                <td rowspan="4">자격증 및 어학성적</td>
+                <td>취득시기</td>
+                <td>내용</td>
+            </tr>
+            <tr>
+                <td>2021.11</td>
+                <td>1종 대형</td>
+            </tr>
+            <tr>
+                <td>2024.04</td>
+                <td>TOIEC SPEAKING IM2</td>
+            </tr>
+            <tr>
+                <td>2024.06</td>
+                <td>SQLD</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
