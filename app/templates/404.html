@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+</head>
+<body>
+    <h1>404 - Page Not Found</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    {% if error_info %}
+        <h2>Error Information:</h2>
+        <ul>
+            <li>Timestamp: {{ error_info.timestamp }}</li>
+            <li>Error Type: {{ error_info.error_type }}</li>
+            <li>Error Message: {{ error_info.error_message }}</li>
+            <li>User HTML Path: {{ error_info.user_html_path }}</li>
+            <li>File Info: {{ error_info.file_info }}</li>
+        </ul>
+    {% endif %}
+    <a href="/">Go back to home</a>
+</body>
+</html>
