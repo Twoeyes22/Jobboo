@@ -36,8 +36,8 @@ async def home(request: Request, db: AsyncSession = Depends(get_db)):
         "team_members": team_members
     })
 
-@router.get("/user/{user_id}")
-async def team_info(user_id: int, db: AsyncSession = Depends(get_db)):
+@router.get("/api/user/{user_id}")
+async def user_info(user_id: int, db: AsyncSession = Depends(get_db)):
     query = select(User).where(User.u_id == user_id)
     result = await db.execute(query)
     user = result.scalar_one_or_none()  # 유저 정보가 없으면 None 반환

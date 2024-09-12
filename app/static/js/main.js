@@ -5,7 +5,7 @@ function loadTeam(teamId) {
 // 유저 카드 열기
 function openModal(userId) {
     // API 호출
-    fetch(`/user/${userId}`)
+    fetch(`/api/user/${userId}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
