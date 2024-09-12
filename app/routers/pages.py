@@ -77,7 +77,7 @@ async def create_user(
     if u_html:
         # 이메일을 기반으로 파일 이름 생성
         html_filename = f'{u_email}.html'
-        file_path_html = f'templates/resume/{html_filename}'
+        file_path_html = f'static/resume_html/{html_filename}'
         with open(file_path_html, 'wb') as f:
             f.write(await u_html.read())
     
@@ -103,9 +103,9 @@ async def create_user(
         u_email=u_email,
         u_git=u_git,
         t_id=t_id,
-        u_html=html_filename if u_html else None,
-        u_css=css_filename if u_css else None,
-        u_image=photo_filename if photo else None
+        u_html= 'resume_html/' + html_filename if u_html else None,
+        u_css= 'css/resume_css/' + css_filename if u_css else None,
+        u_image= 'images/user_photos/' + photo_filename if photo else None
     )
 
     db.add(new_user)
