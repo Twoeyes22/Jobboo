@@ -1,6 +1,6 @@
 .DS_Store
 *.pyc
-
+*/.DS_Store
 app/__pycache__/
 app/routers/__pycache__/
 

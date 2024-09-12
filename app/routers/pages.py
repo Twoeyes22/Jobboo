@@ -1,6 +1,12 @@
-from fastapi import APIRouter, Request, Form, UploadFile
+from fastapi import APIRouter, Request, Form, UploadFile, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from sqlalchemy.orm import Session
+from database import get_db
+from models import Team, User
+import os
 # 라우터 객체 생성
 router = APIRouter()
 
@@ -35,10 +41,11 @@ async def resume(request: Request, member_name: str):
 ##유저 생성 페이지
 # 유저 생성 페이지 라우트
 @router.get("/user/create")
-async def create_user_page(request: Request):
-    # create_user.html 템플릿을 렌더링
-    return templates.TemplateResponse("create_user.html", {"request": request})
-
+async def create_user_page(request: Request, db: AsyncSession = Depends(get_db)):
+    # DB에서 팀 목록을 조회
+    result = await db.execute(select(Team))
+    teams = result.scalars().all()
+    return templates.TemplateResponse("create_user.html", {"request": request, "teams": teams})
 
 @router.post("/user/create")
 async def create_user(
@@ -50,36 +57,60 @@ async def create_user(
     u_html: UploadFile = Form(None),
     u_css: UploadFile = Form(None),
     photo: UploadFile = Form(None),
-    t_id: int = Form(...)
+    t_id: int = Form(...),
+    db: AsyncSession = Depends(get_db)
 ):
-    # 여기에서 받은 데이터를 처리하고 DB에 저장하는 등의 작업을 수행할 수 있습니다.
-    # 예를 들어, 파일을 저장하는 작업을 추가할 수 있습니다.
+    # 이메일 중복 체크
+    result = await db.execute(select(User).filter_by(u_email=u_email))
+    existing_user = result.scalar_one_or_none()
+    
+    if existing_user:
+        # 이미 존재하는 이메일인 경우 에러 반환
+        teams = (await db.execute(select(Team))).scalars().all()
+        return templates.TemplateResponse("create_user.html", {
+            "request": request,
+            "teams": teams,
+            "error": "이미 존재하는 이메일입니다."
+        })
 
-    # 예시로 파일을 저장하는 코드
+    # 파일 저장 및 DB 저장 로직
     if u_html:
-        # 파일 이름이 실제로 있는지 확인한 후, 경로를 포함한 파일명을 사용
-        file_path_html = f'templates/resume/{u_html.filename}'
-        if not u_html.filename:  # 파일 이름이 없는 경우 처리
-            return {"error": "HTML 파일이 지정되지 않았습니다."}
+        # 이메일을 기반으로 파일 이름 생성
+        html_filename = f'{u_email}.html'
+        file_path_html = f'templates/resume/{html_filename}'
         with open(file_path_html, 'wb') as f:
             f.write(await u_html.read())
     
     if u_css:
-        file_path_css = f'static/css/resume_css/{u_css.filename}'
-        if not u_css.filename:  # 파일 이름이 없는 경우 처리
-            return {"error": "CSS 파일이 지정되지 않았습니다."}
+        # 이메일을 기반으로 파일 이름 생성
+        css_filename = f'{u_email}.css'
+        file_path_css = f'static/css/resume_css/{css_filename}'
         with open(file_path_css, 'wb') as f:
             f.write(await u_css.read())
     
     if photo:
-        file_path_photo = f'static/images/user_photos/{photo.filename}'
-        if not photo.filename:  # 파일 이름이 없는 경우 처리
-            return {"error": "사진 파일이 지정되지 않았습니다."}
+        # 파일의 확장자를 추출하여 이메일 기반 파일 이름 생성
+        _, photo_ext = os.path.splitext(photo.filename)
+        photo_filename = f'{u_email}{photo_ext}'
+        file_path_photo = f'static/images/user_photos/{photo_filename}'
         with open(file_path_photo, 'wb') as f:
             f.write(await photo.read())
 
     # DB에 유저 정보 저장 로직 추가
-    # 예를 들어, 새로운 유저 정보를 데이터베이스에 삽입하는 코드를 여기에 작성합니다.
+    new_user = User(
+        u_name=u_name,
+        u_nickname=u_nickname,
+        u_email=u_email,
+        u_git=u_git,
+        t_id=t_id,
+        u_html=html_filename if u_html else None,
+        u_css=css_filename if u_css else None,
+        u_image=photo_filename if photo else None
+    )
+
+    db.add(new_user)
+    await db.commit()  # 트랜잭션 커밋
+    await db.refresh(new_user)
 
     # 처리가 끝나면 홈으로 리다이렉트
     return RedirectResponse(url="/", status_code=303)

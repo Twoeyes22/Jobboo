@@ -13,6 +13,11 @@
             <div class="form-header">
                 <h1>유저 생성</h1>
             </div>
+            {% if error %}
+            <div id="error-popup" class="error-popup active">
+                {{ error }}
+            </div>
+            {% endif %}
             <form method="post" action="/user/create" enctype="multipart/form-data" style="margin-top: 20px;">
                 <div class="form-group">
                     <label for="u_name">이름:</label>
@@ -36,22 +41,26 @@
 
                 <div class="form-group">
                     <label for="u_html">HTML 파일:</label>
-                    <input type="file" id="u_html" name="u_html" class="form-control" required>
+                    <input type="file" id="u_html" name="u_html" class="form-control" accept=".html" required>
                 </div>
 
                 <div class="form-group">
                     <label for="u_css">CSS 파일:</label>
-                    <input type="file" id="u_css" name="u_css" class="form-control" required>
+                    <input type="file" id="u_css" name="u_css" class="form-control" accept=".css" required>
                 </div>
 
                 <div class="form-group">
                     <label for="photo">사진 업로드:</label>
-                    <input type="file" id="photo" name="photo" class="form-control" required>
+                    <input type="file" id="photo" name="photo" class="form-control" accept="image/*" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="t_id">팀 ID:</label>
-                    <input type="number" id="t_id" name="t_id" class="form-control" required>
+                    <label for="t_id">팀:</label>
+                    <select id="t_id" name="t_id" class="form-control" required>
+                        {% for team in teams %}
+                            <option value="{{ team.t_id }}">{{ team.t_name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
 
                 <div class="form-actions" style="margin-top: 30px; text-align: center;">
@@ -61,5 +70,14 @@
             </form>
         </div>
     </main>
+    <script>
+      setTimeout(function() {
+          const popup = document.getElementById("error-popup");
+          if (popup) {
+              popup.classList.remove("active");
+          }
+      }, 3000);
+  </script>
 </body>
 </html>
+
