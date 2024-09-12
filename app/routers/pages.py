@@ -1,44 +1,103 @@
-from fastapi import APIRouter, Request, Form, UploadFile, Depends
+from fastapi import APIRouter, Request, Depends, HTTPException, Form, UploadFile
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import Session
 from database import get_db
 from models import Team, User
 import os
-# 라우터 객체 생성
-router = APIRouter()
+import datetime
 
-# Jinja2 템플릿 엔진 설정
+router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
-# 팀원 정보를 담은 리스트, DB를 사용해보자!
-team_members = [
-    {"name": "Seoyeon", "image": "Seoyeon.jpg", "resume": "Seoyeon.html"},
-    {"name": "Minwoo", "image": "minwoo.png", "resume": "minwoo.html"},
-    {"name": "Hongjip", "image": "Hongjip.jpg", "resume": "Hongjip.html"},
-    {"name": "Gwangjin", "image": "Gwangjin.jpg", "resume": "Gwangjin.html"},
-    {"name": "Boyeong", "image": "Boyeong.jpg", "resume": "Boyeong.html"},
-    {"name": "Jiman", "image": "Jiman.jpg", "resume": "Jiman.html"},
-    {"name": "Goo", "image": "Goo.jpg", "resume": "Goo.html"}
-]
-
-# 홈페이지 라우트
 @router.get("/")
-async def home(request: Request):
-    # index.html 템플릿을 렌더링하고, 팀원 정보를 전달
-    return templates.TemplateResponse("index.html", {"request": request, "team_members": team_members})
+async def home(request: Request, db: AsyncSession = Depends(get_db)):
+    # 모든 팀 정보 조회
+    result = await db.execute(select(Team))
+    teams = result.scalars().all()
 
-# 개별 이력서 페이지 라우트
-@router.get("/resume/{member_name}")
-async def resume(request: Request, member_name: str):
-    # 해당 팀원의 이력서 HTML 파일을 렌더링
-    return templates.TemplateResponse(f"resume/{member_name}.html", {"request": request})
+    # 첫 번째 팀의 정보와 멤버 조회 (기본값)
+    if teams:
+        first_team = teams[0]
+        users_result = await db.execute(
+            select(User).filter(User.t_id == first_team.t_id)
+        )
+        team_members = users_result.scalars().all()
+    else:
+        first_team = None
+        team_members = []
 
-## 다른 사람 메인페이지도 추가해보자.
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "teams": teams,
+        "current_team": first_team,
+        "team_members": team_members
+    })
 
-##유저 생성 페이지
+@router.get("/team/{team_id}")
+async def team_page(request: Request, team_id: int, db: AsyncSession = Depends(get_db)):
+    # 모든 팀 정보 조회
+    all_teams_result = await db.execute(select(Team))
+    all_teams = all_teams_result.scalars().all()
+
+    # 특정 팀 정보 조회
+    team_result = await db.execute(select(Team).filter(Team.t_id == team_id))
+    team = team_result.scalar_one_or_none()
+
+    if team:
+        # 해당 팀의 멤버 정보 조회
+        users_result = await db.execute(select(User).filter(User.t_id == team_id))
+        team_members = users_result.scalars().all()
+    else:
+        team_members = []
+
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "teams": all_teams,
+        "current_team": team,
+        "team_members": team_members
+    })
+
+@router.get("/resume/{user_id}")
+async def resume(request: Request, user_id: int, db: AsyncSession = Depends(get_db)):
+    # 특정 사용자 정보 조회
+    user_result = await db.execute(select(User).filter(User.u_id == user_id))
+    user = user_result.scalar_one_or_none()
+
+    if user and user.u_html:
+        try:
+            # StaticFiles 인스턴스를 통해 파일 경로 얻기
+            file_info = request.app.state.static.lookup_path(user.u_html)
+            
+            if file_info:
+                file_path, _ = file_info  # 튜플 언패킹
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    content = file.read()
+                return HTMLResponse(content=content)
+            else:
+                raise FileNotFoundError(f"File info not found for path: {user.u_html}")
+        except Exception as e:
+            timestamp = datetime.datetime.now().isoformat()
+            error_info = {
+                "timestamp": timestamp,
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "user_html_path": user.u_html,
+                "file_info": str(file_info) if 'file_info' in locals() else "Not available"
+            }
+            return templates.TemplateResponse("404.html", {"request": request, "error_info": error_info}, status_code=404)
+    elif user:
+        return templates.TemplateResponse("404.html", {"request": request, "message": "Resume HTML not set for this user"}, status_code=404)
+    else:
+        return templates.TemplateResponse("404.html", {"request": request, "message": "User not found"}, status_code=404)
+    
+    
+    
+    
+    
+
 # 유저 생성 페이지 라우트
 @router.get("/user/create")
 async def create_user_page(request: Request, db: AsyncSession = Depends(get_db)):
@@ -114,3 +173,4 @@ async def create_user(
 
     # 처리가 끝나면 홈으로 리다이렉트
     return RedirectResponse(url="/", status_code=303)
+
