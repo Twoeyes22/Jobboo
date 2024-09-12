@@ -4,7 +4,7 @@
 <div class="main-content">
   <h2>팀 생성</h2>
   <form id="create-team-form" action="{{ url_for('create_team') }}" method="post" enctype="multipart/form-data"
-    class="create-team-form" onsubmit="return validateFormBeforeSubmit()">
+    class="create-team-form" onsubmit="return validateFormBeforeSubmit(event)">
     <!-- 팀 이름 입력 -->
     <div class="form-group">
       <label for="t_name">팀 이름</label>
@@ -59,6 +59,8 @@
 
 <!-- 자바스크립트 코드 -->
 <script>
+  let isNameValid = false;  // 팀 이름 유효성 확인 변수
+
   // 로고 미리보기 함수
   function previewLogo() {
     const file = document.getElementById('t_logo').files[0];
@@ -83,32 +85,27 @@
     const nameError = document.getElementById('name_error');
     const response = await fetch(`/team/check-name?name=${encodeURIComponent(nameInput.value)}`);
     const data = await response.json();
+
     if (data.exists) {
       nameError.style.display = 'block';
+      isNameValid = false;  // 중복된 팀 이름일 경우 폼 제출 방지
     } else {
       nameError.style.display = 'none';
+      isNameValid = true;  // 중복이 없으면 폼 제출 가능
     }
   }
 
-  // GitHub URL 유효성 검사 및 폼 제출 전 확인
-  function validateFormBeforeSubmit() {
-    const githubURLInput = document.getElementById('t_git');
-    const githubURL = githubURLInput.value;
-    const regex = /^https:\/\/github\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+$/;
-    const errorMessage = document.getElementById('t_git_error');
+  // 폼 제출 전 확인 함수
+  async function validateFormBeforeSubmit(event) {
+    event.preventDefault();  // 기본 제출 동작 막기
 
-    if (githubURL && !regex.test(githubURL)) {
-      errorMessage.style.display = 'block';
-      const confirmCreation = confirm("GitHub URL이 유효하지 않습니다. GitHub URL 없이 팀을 생성하시겠습니까?");
-      if (confirmCreation) {
-        githubURLInput.value = ''; // 잘못된 값일 때 빈 값으로 설정
-        return true;  // 폼 제출 진행
-      } else {
-        return false;  // 폼 제출 중단
-      }
+    await checkTeamName();  // 팀 이름 중복 검사 결과 기다리기
+
+    // 팀 이름이 유효한 경우에만 폼 제출
+    if (isNameValid) {
+      document.getElementById('create-team-form').submit();  // 유효하면 폼 제출
     } else {
-      errorMessage.style.display = 'none';
-      return true;
+      console.log("중복된 팀 이름이 있어 폼이 제출되지 않았습니다.");
     }
   }
 

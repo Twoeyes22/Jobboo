@@ -41,24 +41,24 @@ class User(Base):
 
 
 # Todo: 업로드 파일 미구현
-# class UploadFile(Base):
-#     __tablename__ = 'upload_file'
+class UploadFile(Base):
+    __tablename__ = 'upload_file'
 
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     upload_folder = Column(String(255))
-#     upload_path = Column(String(255))
-#     client_file_name = Column(String(255))
-#     ext_file_name = Column(String(50))
-#     file_type = Column(String(50))
-#     server_file_name = Column(String(255))
-#     full_path = Column(String(255))
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    upload_folder = Column(String(255))
+    upload_path = Column(String(255))
+    client_file_name = Column(String(255))
+    ext_file_name = Column(String(50))
+    file_type = Column(String(50))
+    server_file_name = Column(String(255))
+    full_path = Column(String(255))
 
-#     # 팀 또는 유저와의 1:1 관계
-#     team_id = Column(Integer, ForeignKey('team.t_id', ondelete="SET NULL"), unique=True, nullable=True)
-#     user_id = Column(Integer, ForeignKey('user.u_id', ondelete="SET NULL"), unique=True, nullable=True)
+    # 팀 또는 유저와의 1:1 관계
+    team_id = Column(Integer, ForeignKey('team.t_id', ondelete="SET NULL"), unique=True, nullable=True)
+    user_id = Column(Integer, ForeignKey('user.u_id', ondelete="SET NULL"), unique=True, nullable=True)
 
-#     # 양방향 관계 설정
-#     team = relationship("Team", back_populates="upload_file")
-#     user = relationship("User", back_populates="upload_file")
+    # 양방향 관계 설정
+    team = relationship("Team", back_populates="upload_file")
+    user = relationship("User", back_populates="upload_file")
 
 
