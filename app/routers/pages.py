@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Depends, HTTPException, Form, UploadFile
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse, PlainTextResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import Session
@@ -35,6 +35,23 @@ async def home(request: Request, db: AsyncSession = Depends(get_db)):
         "current_team": first_team,
         "team_members": team_members
     })
+
+@router.get("/user/{user_id}")
+async def team_info(user_id: int, db: AsyncSession = Depends(get_db)):
+    query = select(User).where(User.u_id == user_id)
+    result = await db.execute(query)
+    user = result.scalar_one_or_none()  # 유저 정보가 없으면 None 반환
+    
+    if user is None:
+        return {"error": "User not found"}
+
+    return {
+        "u_nickname": user.u_nickname,
+        "u_id": user.u_id,
+        "u_name": user.u_name,
+        "u_email": user.u_email,
+        "u_git": user.u_git
+    }
 
 @router.get("/team/{team_id}")
 async def team_page(request: Request, team_id: int, db: AsyncSession = Depends(get_db)):
