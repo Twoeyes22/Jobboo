@@ -103,9 +103,10 @@ h1 {
     left: 20px; /* 왼쪽에서 20px 떨어진 위치에 배치 */
     top: 20px; /* 위에서 20px 떨어진 위치에 배치 */
     width: 200px;
-    height: 25vh;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 15px;
+    overflow-y: auto;
+    max-height: 300px;
 }
 
 .team-buttons {
@@ -121,4 +122,29 @@ h1 {
     color: white;
     border: none;
     cursor: pointer;
+    text-align: left;
+}
+
+.team-button:hover {
+    background-color: #0056b3;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25vh;
+}
+
+.member-slot {
+    text-align: center;
+    width: 14%;
+}
+
+.member-slot img {
+    max-width: 100%;
+    height: auto;
 }

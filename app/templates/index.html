@@ -2,39 +2,45 @@
 
 {% block content %}
 <div class="main-content">
-    <!-- 팀 선택 섹션 추가 -->
     <div class="team-selection">
         <h3>팀 선택</h3>
         <div class="team-buttons">
-            <button class="team-button">Jobboo</button>
-            <button class="team-button">2조</button>
-            <button class="team-button">4조</button>
+            {% for team in teams %}
+            <button class="team-button" onclick="loadTeam({{ team.t_id }})">{{ team.t_name }}</button>
+            {% endfor %}
         </div>
     </div>
     <div class="center-content">
-        <!-- 변경: 이미지를 상단으로 이동하고 logo-container 클래스 추가 -->
+        {% if current_team %}
         <div class="logo-container">
-            <img src="{{ url_for('static', path='/images/team_logo/jobboo_logo.png') }}" alt="JOBBOO Logo" class="logo-image">
+            <img src="{{ url_for('static', path=current_team.t_logo) }}" alt="{{ current_team.t_name }} Logo" class="logo-image">
         </div>
-        <!-- 메인 타이틀 -->
-        <h1>JOBBOO</h1>
+        <h1>{{ current_team.t_name }}</h1>
         <div class="team-intro">
-            <h2>팀 소개</h2>
-            <p>DevOps의 숙명 Jobboo !!!!</p>
+            <p>{{ current_team.t_intro }}</p>
+            <p>{{ current_team.t_descript }}</p>
+            <a href="{{ current_team.t_git }}" target="_blank">GitHub Link👆</a>
         </div>
+        {% else %}
+        <h1>팀을 선택해주세요</h1>
+        {% endif %}
     </div>
 </div>
 
 <div class="team-members">
-    <!-- team_members 리스트를 순회하며 각 팀원의 정보 표시 -->
     {% for member in team_members %}
     <div class="member-slot">
-        <h3>{{ member.name }}</h3>
-        <!-- 팀원 이력서 페이지로 링크, 이미지 클릭 시 해당 페이지로 이동/ 신규 페이지 호출 -->
-        <a href="{{ url_for('resume', member_name=member.name.lower()) }}" target="_blank">
-            <img src="{{ url_for('static', path='/images/user_photos/' + member.image) }}" alt="{{ member.name }}">
+        <h3>{{ member.u_name }}</h3>
+        <a href="{{ url_for('resume', user_id=member.u_id) }}" target="_blank">
+            <img src="{{ url_for('static', path=member.u_image) }}" alt="{{ member.u_name }}">
         </a>
     </div>
     {% endfor %}
 </div>
+
+<script>
+function loadTeam(teamId) {
+    window.location.href = `/team/${teamId}`;
+}
+</script>
 {% endblock %}
