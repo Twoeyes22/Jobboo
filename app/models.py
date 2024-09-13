@@ -30,6 +30,10 @@ class User(Base):
     u_css = Column(Text)
     u_image = Column(String(255))
     team = relationship("Team", back_populates="users")
+    
 
-# 주요 변경사항: 없음
-# ORM 모델 정의는 동기/비동기와 관계없이 동일
+
+
+
+
+

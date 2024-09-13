@@ -3,6 +3,7 @@
 {% block content %}
 <div class="main-content">
     <div class="team-selection">
+        <a href="{{ url_for('create_team') }}" class="team-button">팀 생성</a>
         <h3>팀 선택</h3>
         <div class="team-buttons">
             {% for team in teams %}
@@ -13,7 +14,8 @@
     <div class="center-content">
         {% if current_team %}
         <div class="logo-container">
-            <img src="{{ url_for('static', path=current_team.t_logo) }}" alt="{{ current_team.t_name }} Logo" class="logo-image">
+            <img src="{{ url_for('static', path=current_team.t_logo) }}" alt="{{ current_team.t_name }} Logo"
+                class="logo-image">
         </div>
         <h1>{{ current_team.t_name }}</h1>
         <div class="team-intro">
@@ -44,8 +46,8 @@
     {% endfor %}
 </div>
 
- <!-- 사용자 정보 카드 -->
- <div id="userModal" class="modal" style="display: none;">
+<!-- 사용자 정보 카드 -->
+<div id="userModal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 id="user-name"></h2>

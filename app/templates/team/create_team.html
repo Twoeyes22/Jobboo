@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+  <h2>팀 생성</h2>
+  <form id="create-team-form" action="{{ url_for('create_team') }}" method="post" enctype="multipart/form-data"
+    class="create-team-form" onsubmit="return teamFormValidateFormBeforeSubmit(event)">
+    <!-- 팀 이름 입력 -->
+    <div class="form-group">
+      <label for="t_name">팀 이름</label>
+      <input type="text" id="t_name" name="t_name" required class="form-control" onblur="teamFormCheckTeamName()">
+      <div id="name_error" style="color: red; display: none;">이 팀 이름은 이미 사용중입니다.</div>
+    </div>
+
+    <!-- 팀 소개 입력 -->
+    <div class="form-group">
+      <label for="t_intro">팀 소개</label>
+      <textarea id="t_intro" name="t_intro" rows="3" class="form-control"></textarea>
+    </div>
+
+    <!-- 팀 설명 입력 -->
+    <div class="form-group">
+      <label for="t_descript">팀 설명</label>
+      <textarea id="t_descript" name="t_descript" rows="5" class="form-control"></textarea>
+    </div>
+
+    <!-- 팀 로고 업로드 -->
+    <div class="form-group">
+      <label for="t_logo">팀 로고</label>
+      <input type="file" id="t_logo" name="t_logo" accept="image/*" class="form-control-file"
+        onchange="teamFormPreviewLogo()">
+    </div>
+
+    <!-- 이미지 미리보기 -->
+    <div class="form-group">
+      <label>미리보기</label>
+      <img id="logo-preview" src="#" alt="팀 로고 미리보기"
+        style="display: none; max-width: 200px; max-height: 200px; margin-top: 10px;" onclick="teamFormOpenModal()">
+    </div>
+
+    <!-- GitHub URL 입력 -->
+    <div class="form-group">
+      <label for="t_git">팀 GitHub URL</label>
+      <input type="url" id="t_git" name="t_git" class="form-control"
+        placeholder="https://github.com/username/repository">
+      <small id="t_git_error" style="color: red; display: none;">유효한 GitHub 주소를 입력하세요 (예:
+        https://github.com/username/repository).</small>
+    </div>
+
+    <!-- 제출 버튼 -->
+    <button type="submit" class="btn btn-primary" id="submit-btn">팀 생성</button>
+  </form>
+</div>
+
+<!-- 이미지 클릭 시 큰 이미지 표시 모달 -->
+<div id="team-image-modal" class="team-modal" onclick="teamFormCloseModal(event)">
+  <span class="team-modal-close" onclick="teamFormCloseModal()">&times;</span>
+  <img class="team-modal-content" id="modal-image">
+</div>
+
+<!-- 자바스크립트 코드 -->
+<script>
+  let teamFormIsNameValid = false;  // 팀 이름 유효성 확인 변수
+
+  // 팀 이름 중복 검사 함수
+  async function teamFormCheckTeamName() {
+    const nameInput = document.getElementById('t_name').value.trim();
+    const nameError = document.getElementById('name_error');
+    const submitBtn = document.getElementById('submit-btn');
+
+    try {
+      const response = await fetch('/team/check-name', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: nameInput })  // Sending team name in JSON format
+      });
+
+      const data = await response.json();
+      if (data.exists) {
+        nameError.innerText = '이 팀 이름은 이미 사용중입니다.';
+        nameError.style.display = 'block';
+        submitBtn.disabled = true;
+        return false;  // Name is not valid
+      } else {
+        nameError.style.display = 'none';
+        submitBtn.disabled = false;
+        return true;  // Name is valid
+      }
+    } catch (error) {
+      console.error('Error checking team name:', error);
+      nameError.innerText = '팀 이름 확인 중 오류가 발생했습니다.';
+      nameError.style.display = 'block';
+      submitBtn.disabled = true;
+      return false;
+    }
+  }
+
+
+
+
+  // 폼 제출 전 확인 함수
+  async function teamFormValidateFormBeforeSubmit(event) {
+    event.preventDefault();
+    const nameValid = await teamFormCheckTeamName(); // Check if the name is valid
+
+    if (nameValid) {
+      document.getElementById('create-team-form').submit(); // Submit if valid
+    } else {
+      console.log("중복된 팀 이름이 있어 폼이 제출되지 않았습니다.");
+    }
+  }
+
+
+
+  // 로고 미리보기 함수
+  function teamFormPreviewLogo() {
+    const file = document.getElementById('t_logo').files[0];
+    const preview = document.getElementById('logo-preview');
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      }
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = '#';
+      preview.style.display = 'none';
+    }
+  }
+
+  // 모달 열기 함수
+  function teamFormOpenModal(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const modal = document.getElementById('team-image-modal');
+    const modalImg = document.getElementById('modal-image');
+    const previewImg = document.getElementById('logo-preview');
+
+    modal.style.display = "flex";
+    modalImg.src = previewImg.src;
+  }
+
+  // 모달 닫기 함수
+  function teamFormCloseModal(event) {
+    const modal = document.getElementById('team-image-modal');
+    if (event.target === modal || event.target.classList.contains('team-modal-close')) {
+      modal.style.display = "none";
+    }
+  }
+
+  // DOM 요소에 이벤트 연결
+  document.getElementById('create-team-form').addEventListener('submit', teamFormValidateFormBeforeSubmit);
+  document.getElementById('t_logo').addEventListener('change', teamFormPreviewLogo);
+  document.getElementById('create-team-form').addEventListener('submit', teamFormValidateFormBeforeSubmit);
+  document.getElementById('logo-preview').addEventListener('click', teamFormOpenModal);
+  document.getElementById('team-image-modal').addEventListener('click', teamFormCloseModal);
+</script>
+
+<!-- 이 페이지에만 적용될 CSS 스타일 -->
+<style>
+  .create-team-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .create-team-form .form-group {
+    margin-bottom: 20px;
+  }
+
+  .create-team-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+
+  .create-team-form input[type="text"],
+  .create-team-form input[type="url"],
+  .create-team-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+
+  .create-team-form input[type="file"] {
+    padding: 5px;
+    font-size: 1rem;
+  }
+
+  .create-team-form .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .create-team-form .btn:hover {
+    background-color: #0056b3;
+  }
+
+  .main-content {
+    padding: 40px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #logo-preview {
+    display: block;
+    margin-top: 10px;
+    max-width: 200px;
+    max-height: 200px;
+    cursor: pointer;
+  }
+
+  /* 고유한 모달 스타일 */
+  .team-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .team-modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    /* 이미지가 너무 크면 축소되도록 설정 */
+  }
+
+  .team-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .team-modal-close:hover,
+  .team-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+{% endblock %}
