@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS user (
 
 -- team 테이블 데이터 삽입
 INSERT INTO team (t_name, t_intro, t_descript, t_logo, t_git) VALUES
-('Jobboo', 'DevOps의 숙명', '나는 소개입니다.', '/images/team_logo/jobboo_logo.png', 'https://github.com/Kakao-X-Goorm-DEEP-DIVE-course/Jobboo'),
+('Jobboo', 'DevOps의 숙명!!!', '클라우드 엔지니어 혹은 DevOps를 꿈꾸는 머찐 팀입니다.', '/images/team_logo/jobboo_logo.png', 'https://github.com/Kakao-X-Goorm-DEEP-DIVE-course/Jobboo'),
 ('연매출2조', '클라우드 전문가 그룹', 'AWS, Azure, GCP 전문가들이 모였습니다.', '/images/team_logo/2BillionForYear.png', 'https://github.com/Kakao-X-Goorm-DEEP-DIVE-course/guestbook'),
 ('사라진 그들', 'AI 혁신가들', '인공지능과 머신러닝을 연구하는 팀입니다.', '/images/team_logo/jobboo_logo.png', 'https://github.com/aiinnovators'),
 ('캐치구름', '웹 개발의 마법사들', '최신 웹 기술을 연구하고 적용하는 팀입니다.', '/images/team_logo/catchcloud.png', 'https://github.com/Kakao-X-Goorm-DEEP-DIVE-course/Catch-Goorm');
@@ -48,8 +48,8 @@ INSERT INTO user (t_id, u_name, u_nickname, u_email, u_git, u_html, u_css, u_ima
 (1, 'minwoo','DevOps_Master', 'devops@jobboo.com', 'https://github.com/Twoeyes22', 'resume_html/minwoo.html', 'css/resume_css/minwoo.css', 'images/user_photos/minwoo.png'),
 (1, 'seoyeon','CloudGuru', 'cloud@masters.com', 'https://github.com/cloud_guru', 'resume_html/minwoo.html', '/css/cloud_guru.css', '/images/cloud_guru.jpg'),
 (1, 'honggoo','AI_Researcher', 'ai@innovators.com', 'https://github.com/ai_researcher', 'resume_html/minwoo.html', '/css/ai_researcher.css', '/images/ai_researcher.jpg'),
-(1, 'kwangjin','FrontendNinja', 'kwangjin@webwizards.com', 'https://github.com/frontend_ninja', '/html/frontend_ninja.html', '/css/frontend_ninja.css', '/images/frontend_ninja.jpg'),
-(1, 'boyeong','FrontendNinja', 'boyeong@webwizards.com', 'https://github.com/frontend_ninja', '/html/frontend_ninja.html', '/css/frontend_ninja.css', '/images/frontend_ninja.jpg'),
+(1, 'kwangjin','FrontendNinja', 'kwangjin@webwizards.com', 'https://github.com/frontend_ninja', 'resume_html/kwangjin.html', '/css/frontend_ninja.css', '/images/frontend_ninja.jpg'),
+(1, 'boyeong','FrontendNinja', 'boyeong@webwizards.com', 'https://github.com/frontend_ninja', 'resume_html/nabo2000@naver.com.html', '/css/frontend_ninja.css', 'images/user_photos/nabo2000@naver.com.jpeg'),
 (1, 'hongzip','FrontendNinja', 'hongzip@webwizards.com', 'https://github.com/frontend_ninja', '/html/frontend_ninja.html', '/css/frontend_ninja.css', '/images/frontend_ninja.jpg'),
 (2, 'james','AI_Researcher', 'aai@innovators.com', 'https://github.com/ai_researcher', '/html/ai_researcher.html', '/css/ai_researcher.css', '/images/ai_researcher.jpg'),
 (3, 'Dig','FrontendNinja', 'bbkwangjin@webwizards.com', 'https://github.com/frontend_ninja', '/html/frontend_ninja.html', '/css/frontend_ninja.css', '/images/frontend_ninja.jpg'),
