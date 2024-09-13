@@ -1,16 +1,18 @@
 from typing import Optional
 import logging
 from fastapi import Depends, Query, Request, APIRouter, Form, UploadFile, File, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from database import get_db
 from fastapi.templating import Jinja2Templates
 from models import Team
 from src.main.goo.repository.TeamRepository import TeamRepository
 from src.main.goo.model.UploadFileDTO import UploadFileDTO, FileType
+import urllib.parse
 
 # 로거 설정
 logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -19,11 +21,11 @@ templates = Jinja2Templates(directory="templates")
 async def get_team_repository(db: AsyncSession = Depends(get_db)) -> TeamRepository:
     return TeamRepository(db)
 
-@router.get("/team/create", response_class=HTMLResponse, name="create_team")
+@router.get("/team_create", response_class=HTMLResponse, name="create_team")
 async def create_team_form(request: Request):
     return templates.TemplateResponse("team/create_team.html", {"request": request})
 
-@router.post("/team/create", name="create_team")
+@router.post("/team_create", name="create_team")
 async def create_team(
     t_name: str = Form(...),
     t_intro: Optional[str] = Form(None),
@@ -32,35 +34,53 @@ async def create_team(
     t_logo: Optional[UploadFile] = File(None),
     repo: TeamRepository = Depends(get_team_repository)
 ):
-    # 팀 이름 중복 확인
-    existing_team = await repo.get_team_by_name(t_name)
-    if existing_team:
-        logging.error("팀 이름 중복 오류: %s", t_name)
-        raise HTTPException(status_code=400, detail="이미 존재하는 팀 이름입니다.")
-
-    # 팀 생성 요청 로그
-    logging.info("팀 생성 요청: %s, %s, %s, %s, %s", t_name, t_intro, t_descript, t_git, t_logo.filename if t_logo else "No Logo")
-
-    team = Team(
-        t_name=t_name,
-        t_intro=t_intro,
-        t_descript=t_descript,
-        t_git=t_git,
-        t_logo=t_logo.filename if t_logo else None
-    )
-
+    # 팀 생성 로직
     try:
+        team = Team(
+            t_name=t_name,
+            t_intro=t_intro,
+            t_descript=t_descript,
+            t_git=t_git,
+            t_logo=t_logo.filename if t_logo else None
+        )
         await repo.create_team(team)
-        return {"message": "팀 생성이 완료되었습니다."}
+        # 성공 후 index 페이지로 리다이렉션
+        return RedirectResponse(url="/", status_code=303)
     except Exception as e:
         logging.error("팀 생성 중 오류 발생: %s", str(e))
         raise HTTPException(status_code=500, detail="팀 생성 중 오류 발생")
 
+
+
     
-@router.get("/team/check-name", name="check_team_name")
-async def check_team_name(name: str = Query(..., description="The name to check for uniqueness"), repo: TeamRepository = Depends(get_team_repository)):
+
+@router.post("/team/check-name", name="check_team_name")
+async def check_team_name(request: Request, repo: TeamRepository = Depends(get_team_repository)):
+    body = await request.json()  # Parse the JSON body
+    name = body.get("name")  # Extract the 'name' key from the JSON
+
+    if not name:
+        raise HTTPException(status_code=422, detail="팀 이름을 입력해야 합니다.")
+
+    logging.info(f"Checking team name: {name}")
     existing_team = await repo.get_team_by_name(name)
-    return {"exists": bool(existing_team)}
+    
+    if existing_team:
+        return {"exists": True}
+    
+    return { "exists" : False }
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 # @router.post("/upload")
