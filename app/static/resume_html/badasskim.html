@@ -1,0 +1,703 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>안녕하세요, 저는 김현진입니다.</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="627309b3-d256-470c-8a34-8d21ab41be0d" class="page sans"><header><img class="page-cover-image" src="../../static/images/resume_images/gdzz.jpg" style="object-position:center 48.309999999999995%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="../../static/images/resume_images/badasskim.png"/></div><h1 class="page-title">안녕하세요, 저는 김현진입니다.</h1><p class="page-description"></p></header><div class="page-body"><p id="bd184d15-4847-4e0c-a14a-72b0a264e497" class="">
+</p><h2 id="84083ca9-c4f6-4d0d-a75b-8be2f1852f98" class="">👨‍💻<mark class="highlight-blue">Who Are You?</mark></h2><hr id="2a854c46-e755-4dab-aedb-f13269527e6f"/><div id="8154875e-9ef8-4ef2-9d73-242f1b574a08" class="column-list"><div id="64c5f0e8-1da5-4133-8c19-19f49a906c0c" style="width:18.75%" class="column"><h3 id="0ef8de1d-6cd0-4e4e-b4ee-b0aada08130b" class="">Introduction</h3><p id="98e91f9e-4a78-45c0-b5d3-5384388f9f6b" class="">
+</p><p id="f4abe16f-b574-406e-ad22-75d69ed3ad50" class="">
+</p></div><div id="8831d137-676b-4497-8675-a60ab9e504c5" style="width:81.25%" class="column"><p id="76264603-363f-4c7f-b8be-8b39263a277a" class="">
+</p><ul id="b826eb96-f727-4f03-8888-04ba01dd63d9" class="bulleted-list"><li style="list-style-type:disc">안녕하세요! <mark class="highlight-blue_background">백엔드 개발</mark>에 관심을 갖고 있는 <mark class="highlight-blue_background"><strong>김현진</strong></mark>입니다.</li></ul><ul id="2956b539-19fa-4c6d-ad03-b1d65968d23a" class="bulleted-list"><li style="list-style-type:disc">난해한 문제를 해결하는 것에 큰 카타르시스를 느끼고 있습니다.</li></ul><ul id="f3a5ca8a-f8dc-4278-a8f1-fd7b4e968353" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-blue_background"><strong>어떻게(HOW) 같은 방법론적인 의문문 보다는,  왜(WHY), 무엇(WHAT) 같은 본질 자체를 찾으려 노력합니다.</strong></mark></li></ul><ul id="5914db69-ede0-470e-86f7-56da68e4b875" class="bulleted-list"><li style="list-style-type:disc">명상🧘과 음악듣기에 관심이 있습니다.</li></ul><p id="45f9dc01-479e-4e7b-8766-5d79ceca2455" class="">
+</p></div></div><div id="83d6209a-6e2e-4ca3-94f9-34a35f61d685" class="column-list"><div id="9314e698-3845-41f6-aa02-89f31602b060" style="width:18.75%" class="column"><h3 id="9828435f-05e8-45bf-ad85-f0fed50c4c7d" class="">Ties</h3><p id="6f69c40b-8822-455d-a92f-6376ec0ba404" class="">
+</p></div><div id="70ef3412-30a7-4ad3-9c35-8b85b3480545" style="width:81.25%" class="column"><p id="d83955d4-c6c6-4e5b-88c4-47ed43ecd65a" class="">
+</p><ul id="cc4b17b0-8f11-4e20-9393-0d678d8593c4" class="bulleted-list"><li style="list-style-type:disc">Email : <a href="mailto:overlaylowedir@gmail.com">overlaylowedir@gmail.com</a></li></ul><ul id="411a6b7f-c31b-4132-930f-507c6dd61d54" class="bulleted-list"><li style="list-style-type:disc">GitHub : <a href="https://github.com/badasskim">https://github.com/badasskim</a></li></ul><p id="f92ab034-6eb7-4594-91b5-e5eeaa6b440f" class="">
+</p></div></div><h2 id="781ef070-357e-4df9-8b17-ec2c052f20c9" class="">⛑️<mark class="highlight-blue">Skills</mark></h2><hr id="00f58137-b473-4f42-a7df-d3f5ea4c1c75"/><div id="21aabdf0-b0c1-4b2a-ae94-d475ab491128" class="column-list"><div id="79b969d5-7883-4622-a8ad-c5233ddf1de8" style="width:25%" class="column"><h3 id="e78db90f-3cb4-4fcb-a391-a9566624975b" class="">Strong</h3></div><div id="22f30695-cf65-4ec4-bb52-a75aa6b3a73c" style="width:75%" class="column"><p id="6f246ffb-5782-4449-8be7-518e7f30982e" class="">
+</p><ul id="e0da7f92-158b-400a-9f00-d93b412f2d8c" class="bulleted-list"><li style="list-style-type:disc">Node.js<ul id="0111c680-9d9f-44d4-839b-9bb1b5f8cedc" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-blue_background"><strong>Nest.js</strong></mark>, Express, Typescript</li></ul></li></ul><ul id="4e3cd64b-383f-43b4-9b76-f74fc2dc9ec7" class="bulleted-list"><li style="list-style-type:disc">Mysql</li></ul></div></div><div id="879352aa-434c-4e91-8deb-379fcbd75aa5" class="column-list"><div id="e1c0a6d0-9dd4-42a2-b4e7-03922fed9ec7" style="width:25%" class="column"><h3 id="d0849c46-57d1-4083-96f0-7019bb8dc0e8" class="">Infra</h3><p id="61a44f29-6766-40e8-92c2-73aaf29463aa" class="">
+</p></div><div id="bdfcda51-5018-4cb6-83b8-b69946808bbe" style="width:75%" class="column"><p id="47c100e8-3d0b-4cbb-a17a-82a0bb096078" class="">
+</p><ul id="04ddd915-131b-4b73-aa49-328ec25737c4" class="bulleted-list"><li style="list-style-type:disc">AWS EC2, RDS,ECR, S3</li></ul><ul id="45e75bfd-3044-413d-b91d-dd5830735d08" class="bulleted-list"><li style="list-style-type:disc">Oracle VM - 개인 서버로 사용</li></ul></div></div><div id="cfc723ac-3a82-411b-89a9-30a0270c2adf" class="column-list"><div id="d9ff3e67-55eb-4fbd-a0bf-c1b9045687f3" style="width:25%" class="column"><h3 id="4041a8c9-8247-4f38-a240-0769dd01dc6e" class="">knowledgeable</h3></div><div id="e86546f8-fb17-4c07-9bac-e16c8b4b0b23" style="width:75%" class="column"><p id="1772487b-9345-487d-8418-b6d3d4090327" class="">
+</p><ul id="51221e87-2896-4892-b5fc-642ac8bc6ff8" class="bulleted-list"><li style="list-style-type:disc">Rust</li></ul><ul id="8c490d71-db27-4405-8f42-101bdcca8e87" class="bulleted-list"><li style="list-style-type:disc">Java</li></ul><ul id="e42e3932-0d7f-4d91-b12f-f7c6f8c7e9c1" class="bulleted-list"><li style="list-style-type:disc">MongoDB</li></ul><p id="65bc4666-7f8f-4d14-aa69-12c468baff00" class="">
+</p></div></div><div id="850acd70-a83d-42b3-ae2a-d38100773a56" class="column-list"><div id="94997524-5cdb-4461-b8f8-7dc7e1cf51e3" style="width:25%" class="column"><h3 id="9866b70e-35ae-4fde-8b62-0047a228999d" class="">ETC</h3></div><div id="1adbd95c-2e1d-40d6-bdb3-9436f8426b49" style="width:75%" class="column"><p id="39722c88-1e13-499e-b4b3-c579e43d9a86" class="">
+</p><ul id="2d99e30f-fcff-4740-b563-25953b4646f3" class="bulleted-list"><li style="list-style-type:disc">Git, Github</li></ul><ul id="a31e979a-2773-43bc-94bd-ce11ae498269" class="bulleted-list"><li style="list-style-type:disc">Vscode</li></ul><ul id="78fd0f54-9b5e-4450-9b8a-2e3e7168d79a" class="bulleted-list"><li style="list-style-type:disc">Slack, Notion, Jira</li></ul><p id="88664bae-58df-4738-b38e-d36d89043eb1" class="">
+</p></div></div><p id="068b3bc2-8f49-4e00-8ee7-34cc85bf0fa2" class="">
+</p><h2 id="373e6899-556c-4c6a-a7b0-2ee96e55690c" class="">👪<mark class="highlight-blue">Project</mark></h2><hr id="40f8e96f-c868-4e25-9420-d53b8e20e755"/><h3 id="d604c760-9a34-4834-895e-c8c27029a3cb" class="">금오사이(5명) Back - End</h3><p id="5c1b0be7-0b89-478a-946c-0e50786d3433" class="">기간: 2022.07 ~ 2024.07.25</p><figure id="599e90c0-a17b-4ff7-95cb-c34d2978b582"><a href="https://kumoh42.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">금오사이 - 금오공과대학교 커뮤니티</div><div class="bookmark-description">국립 금오공과대학교(금오공대) 커뮤니티 우리사이, 금오사이입니다. 금오공과대학교를 위한 모든 정보를 금오사이에서 찾아보세요!</div></div><div class="bookmark-href"><img src="https://kumoh42.com/files/attach/xeicon/mobicon.png?20230108212730" class="icon bookmark-icon"/>https://kumoh42.com/</div></div><img src="https://kumoh42.com/files/attach/xeicon/191591/default_image.png?20230108212730" class="bookmark-image"/></a></figure><p id="d53d16f1-23f5-48df-9a07-6e4390e59abf" class="">금오공과대학교 학생 커뮤니티 서비스</p><p id="eccd24b9-96ff-4b27-ae3f-d6c07f38017e" class="">담당</p><ul id="058ce0b7-3627-419b-ba68-b23995bc9c2c" class="bulleted-list"><li style="list-style-type:disc">코드 리팩토링</li></ul><ul id="51bc46fb-b347-403c-8b57-fbd44b586f8b" class="bulleted-list"><li style="list-style-type:disc">체육시설 관리자 서비스 REST API 구축</li></ul><ul id="8191a407-2499-4314-97d5-a633723d3e83" class="bulleted-list"><li style="list-style-type:disc"><strong>사용자 체육시설 예약 쿼리 튜닝(65% 이상 성능 개선)</strong></li></ul><ul id="fb18cc64-3d9c-4f4a-a064-27d9bb6e987e" class="bulleted-list"><li style="list-style-type:disc">실시간 버스 도착정보 크롤링</li></ul><ul id="e8914be0-d16e-42a8-b9f9-738e64c70b31" class="bulleted-list"><li style="list-style-type:disc">클라우드 플랫폼 이전을 위한 AWS EC2 및 Mysql 구축</li></ul><p id="51a0c441-db70-4b73-b319-15009322920d" class="">
+</p><h3 id="febbca99-f1a0-47f8-9ebc-e512122a4328" class="">StarHub (3개월/4명) Back - End [PL]</h3><p id="633337b6-9010-40c5-b5ac-bb77ee2cc67d" class="">기간: 2023.10 ~ 2023.12 </p><figure id="872ceeca-9c43-4eae-8367-3c032aa90774"><div class="source">https://github.com/Kumoh-OpenSource-Project/backend</div></figure><p id="1f4fef4d-d6c8-4db8-b5b7-14c4ac08bdae" class="">천체 관측 정보 서비스</p><p id="24009f64-1e0f-4f7c-9d82-bc68e320bab3" class="">담당</p><ul id="66ff621f-9a28-4f62-b99a-8932a31b1c77" class="bulleted-list"><li style="list-style-type:disc">로그인 및 유효성 검사</li></ul><ul id="2bf76d75-0960-45c5-94a3-76072477b278" class="bulleted-list"><li style="list-style-type:disc">유저, 게시글-댓글, 좋아요-스크랩 CRUD REST API 구축</li></ul><ul id="426b839d-a1e9-4f8e-b06e-c64c9ebb9aef" class="bulleted-list"><li style="list-style-type:disc">AWS EC2, S3 및 DB 설계</li></ul><p id="10fd3118-1e19-4d3c-bc2f-c76125f369ba" class="">
+</p><h2 id="08999c9d-c9d3-4480-95c7-bde4f027561f" class=""><mark class="highlight-blue">📄Expeience</mark></h2><hr id="abf0c671-bfec-4f7d-84d6-72f3af938652"/><h3 id="2f027a33-c72d-4696-8436-a9a56b53cfea" class="">모바일 소프트웨어 연구실(2023.03 ~ 진행)</h3><p id="ddaaea8a-9dae-41ce-94c6-ae8e9ecd9320" class="">학부연구생</p><h3 id="e0b0b35d-a647-475f-a6b0-9592015ec132" class="">23학년도 여름학기 현장실습(2023.07~2023.09)</h3><p id="ac965094-ca23-483a-b842-b70e86f74107" class="">국가 매립 배전반 조회 페이지 작성</p><h3 id="95cb60c4-2463-4285-8123-8d109251763e" class="">한국정보기술학회 대학생논문경진대회(2024 하계)</h3><p id="e3a9d4fe-e55b-4ad5-b613-cb0cd3bbf37c" class="">노쇼 방지를 위한 체육시설 동상</p><p id="7f292dde-d9e9-4c74-bad1-0ca64da49a9e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
