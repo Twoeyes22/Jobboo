@@ -6,29 +6,78 @@ FAST API 사용해 팀원의 이력서를 한 눈에 보는 웹 페이지
 ## 프로젝트 구조
 ```
 Jobboo/
-│  
-├── app/
-│   └── main.py
-│  
 ├── Dockerfile
 ├── README.md
-├── config.json
-├── docker-compose.yml
+├── app
+│   ├── database.py
+│   ├── main.py
+│   ├── models.py
+│   ├── routers
+│   │   └── pages.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── main.css
+│   │   │   ├── resume_css
+│   │   │   │   └── 이력서 CSS 파일들
+│   │   │   └── user_create.css
+│   │   ├── images
+│   │   │   ├── resume_images
+│   │   │   │   └── 이력서에서 참조하는 개인 이미지들
+│   │   │   ├── team_logo
+│   │   │   │   ├── 2BillionForYear.png
+│   │   │   │   ├── catchcloud.png
+│   │   │   │   └── jobboo_logo.png
+│   │   │   └── user_photos
+│   │   │       └── main page 유저 별 이미지들
+│   │   ├── js
+│   │   │   ├── main.js
+│   │   │   └── resume_js
+│   │   │       └── 이력서 js 파일들
+│   │   └── resume_html
+│   │       └── 이력서 html 파일들
+│   └── templates
+│       ├── 404.html
+│       ├── base.html
+│       ├── create_user.html
+│       └── index.html
+├── config
+├── docker-compose.yaml
+├── init.sql
 └── requirements.txt
 ```
 ## 환경설정
 
 requirements.txt
 ```
-fastapi==0.100.0
-uvicorn==0.22.0
-jinja2==3.1.2
+fastapi==0.100.0  # 대장
+uvicorn==0.22.0  # 빌드 툴
+jinja2==3.1.2   # 템플릿
+sqlalchemy==1.4.40 # ORM
+#pymysql==1.0.2   # mysql 드라이버
+pytest==8.3.2     # 테스트 도구
+pydantic==1.10.9  # Json 변환 직렬화 역직렬화
+httpx==0.24.1
+python-dotenv     # 코드에 env 변수 필요할때
+python-multipart # 파일 업로드 할때 필요한
+aiofiles # 파일 입출력 비동기 가능하게
+
+
+alembic # SQLAlchemy를 위한 데이터베이스 마이그레이션 도구로, 스키마 변경을 버전 관리
+aiomysql # 비동기 MySQL 데이터베이스 지원을 제공하는 라이브러리
+
+sqlalchemy[asyncio] # SQLAlchemy의 비동기 지원 모듈로, 비동기 I/O를 사용하여 데이터베이스 작업을 수행
+cryptography==40.0.1 # 암호화와 관련된 보안 작업을 수행할 수 있는 라이브러리%
 ```
 
 Service Port
 ```
-Local port : 8080
-Container port : 8080
+<WEB>
+Local Port : 8080
+Container Port : 8080
+
+<DB>
+Local Port : 3306
+Container Port : 3306
 ```
 
 ## 서비스 동작
