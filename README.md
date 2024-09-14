@@ -6,14 +6,43 @@ FAST API 사용해 팀원의 이력서를 한 눈에 보는 웹 페이지
 ## 프로젝트 구조
 ```
 Jobboo/
-│  
-├── app/
-│   └── main.py
-│  
 ├── Dockerfile
 ├── README.md
-├── config.json
-├── docker-compose.yml
+├── app
+│   ├── database.py
+│   ├── main.py
+│   ├── models.py
+│   ├── routers
+│   │   └── pages.py
+│   ├── static
+│   │   ├── css
+│   │   │   ├── main.css
+│   │   │   ├── resume_css
+│   │   │   │   └── 이력서 CSS 파일들
+│   │   │   └── user_create.css
+│   │   ├── images
+│   │   │   ├── resume_images
+│   │   │   │   └── 이력서에서 참조하는 개인 이미지들
+│   │   │   ├── team_logo
+│   │   │   │   ├── 2BillionForYear.png
+│   │   │   │   ├── catchcloud.png
+│   │   │   │   └── jobboo_logo.png
+│   │   │   └── user_photos
+│   │   │       └── main page 유저 별 이미지들
+│   │   ├── js
+│   │   │   ├── main.js
+│   │   │   └── resume_js
+│   │   │       └── 이력서 js 파일들
+│   │   └── resume_html
+│   │       └── 이력서 html 파일들
+│   └── templates
+│       ├── 404.html
+│       ├── base.html
+│       ├── create_user.html
+│       └── index.html
+├── config
+├── docker-compose.yaml
+├── init.sql
 └── requirements.txt
 ```
 ## 환경설정
