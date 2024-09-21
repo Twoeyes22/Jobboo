@@ -191,3 +191,27 @@ async def create_user(
     # 처리가 끝나면 홈으로 리다이렉트
     return RedirectResponse(url="/", status_code=303)
 
+# 현제 팀 id 가져오기
+@router.get("/current_team/{team_id}")
+async def get_current_team(team_id: int, db: AsyncSession = Depends(get_db)):
+    team_result = await db.execute(select(Team).filter(Team.t_id == team_id))
+    team = team_result.scalar_one_or_none()
+    
+    if not team:
+        raise HTTPException(status_code=404, detail="Team not found")
+    
+    return team
+
+# 실제 팀 삭제 처리
+@router.post("/team/delete/{team_id}")
+async def delete_team(team_id: int, db: Session = Depends(get_db)):
+    team_result = await db.execute(select(Team).filter(Team.t_id == team_id))
+    team = team_result.scalar_one_or_none()
+
+    if team is None:
+        raise HTTPException(status_code=404, detail="Team not found")
+
+    await db.delete(team)
+    await db.commit()
+
+    return RedirectResponse(url="/", status_code=303)

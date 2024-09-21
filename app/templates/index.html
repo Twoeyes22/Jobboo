@@ -3,7 +3,11 @@
 {% block content %}
 <div class="main-content">
     <div class="team-selection">
-        <a href="{{ url_for('create_team') }}" class="team-button">팀 생성</a>
+        <div class="buttons-container">
+            <a href="{{ url_for('create_team') }}" class="team-button">팀 생성</a>
+            <button class="delete-button" onclick="openDeleteModal({{ current_team.t_id }})">현재 팀 삭제</button>
+        </div>
+        
         <h3>팀 선택</h3>
         <div class="team-buttons">
             {% for team in teams %}
@@ -11,6 +15,7 @@
             {% endfor %}
         </div>
     </div>
+
     <div class="center-content">
         {% if current_team %}
         <div class="logo-container">
@@ -54,6 +59,19 @@
         <p><strong>Nickname:</strong> <span id="user-nickname"></span></p>
         <p><strong>Email:</strong> <span id="user-email"></span></p>
         <p><strong>GitHub:</strong> <span id="user-git"></span></p>
+    </div>
+</div>
+
+<!-- 팀 삭제 확인 모달 -->
+<div id="deleteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeDeleteModal()">&times;</span>
+        <h2 id="modal-team-name" style="color: #e74c3c;"></h2>
+        <p>삭제된 팀은 복구할 수 없습니다. 정말 삭제하시겠습니까?</p>
+        <form id="deleteForm" method="post">
+            <button type="submit" class="delete-confirm">삭제 확인</button>
+            <button type="button" class="delete-close" onclick="closeDeleteModal()">취소</button>
+        </form>
     </div>
 </div>
 
