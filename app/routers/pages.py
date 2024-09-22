@@ -215,3 +215,18 @@ async def delete_team(team_id: int, db: Session = Depends(get_db)):
     await db.commit()
 
     return RedirectResponse(url="/", status_code=303)
+
+
+# 실제 유저 삭제 처리
+@router.post("/user/delete/{user_id}")
+async def delete_team(user_id: int, db: Session = Depends(get_db)):
+    user_result = await db.execute(select(User).filter(User.u_id == user_id))
+    user = user_result.scalar_one_or_none()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    await db.delete(user)
+    await db.commit()
+
+    return RedirectResponse(url="/", status_code=303)

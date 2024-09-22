@@ -295,3 +295,26 @@ h1 {
 .delete-close:hover {
     background-color: #7f8c8d; /* 호버 시 더 진한 회색 */
 }
+
+#user-name {
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+.fas fa-trash-alt {
+    cursor: pointer; 
+    margin-left: 10px;
+}
+
+.fas fa-trash-alt:hover {
+    color: #555; /* 진한 회색 */
+}
+
+#delete-button {
+    color: #555;
+    cursor: pointer;
+}
+
+#delete-button:hover {
+    color: #c0392b;
+}
