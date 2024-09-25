@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유저 생성</title>
+    <!-- CSS 파일 링크 -->
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/user_create.css') }}">
+</head>
+<body>
+    <main>
+        <div class="user-create-form" style="margin-top: 40px; text-align: center;">
+            <div class="form-header">
+                <h1>유저 생성</h1>
+            </div>
+            {% if error %}
+            <div id="error-popup" class="error-popup active">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form method="post" action="/user/create" enctype="multipart/form-data" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="u_name">이름:</label>
+                    <input type="text" id="u_name" name="u_name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="u_nickname">닉네임:</label>
+                    <input type="text" id="u_nickname" name="u_nickname" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="u_email">이메일:</label>
+                    <input type="email" id="u_email" name="u_email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="u_git">GitHub:</label>
+                    <input type="url" id="u_git" name="u_git" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="u_html">HTML 파일:</label>
+                    <input type="file" id="u_html" name="u_html" class="form-control" accept=".html" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="u_css">CSS 파일:</label>
+                    <input type="file" id="u_css" name="u_css" class="form-control" accept=".css" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">사진 업로드:</label>
+                    <input type="file" id="photo" name="photo" class="form-control" accept="image/*" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="t_id">팀:</label>
+                    <select id="t_id" name="t_id" class="form-control" required>
+                        {% for team in teams %}
+                            <option value="{{ team.t_id }}">{{ team.t_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-actions" style="margin-top: 30px; text-align: center;">
+                    <button type="submit" class="btn btn-primary" style="width: 150px; height: 50px; font-size: 1.2rem; margin-right: 10px;">생성</button>
+                    <button type="reset" class="btn btn-secondary" style="width: 150px; height: 50px; font-size: 1.2rem;">초기화</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script>
+      setTimeout(function() {
+          const popup = document.getElementById("error-popup");
+          if (popup) {
+              popup.classList.remove("active");
+          }
+      }, 3000);
+  </script>
+</body>
+</html>
+

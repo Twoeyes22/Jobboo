@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background: #E6E6E6;
+    color: #000;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+#toggle-theme {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    color: #333;
+    cursor: pointer;
+}
+
+article h3 {
+    color: #666;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: #e4e4e4;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+    width: 100%;
+    bottom: 0;
+}
+
+.content {
+    display: none; /* 기본적으로 숨김 */
+}
+
+.collapsible.expanded .content {
+    display: block; /* 확장된 경우 보임 */
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+body.dark-mode main {
+    background: #444;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode header {
+    background: #555;
+    color: #f4f4f4;
+}
+
+body.dark-mode footer {
+    background: #222;
+    color: #f4f4f4;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode p, 
+body.dark-mode li, 
+body.dark-mode #toggle-theme {
+    color: #ffffff; /* 다크 모드에서 모든 텍스트를 하얀색으로 설정 */
+}
+
+body.dark-mode ul li {
+    background: #666; /* 다크 모드에서 리스트 아이템 배경 색상 조정 */
+}
