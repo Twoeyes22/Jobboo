@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <div class="main-content">
     <div class="team-selection">
-        <a href="{{ url_for('create_team') }}" class="team-button">팀 생성</a>
+        <div class="buttons-container">
+            <a href="{{ url_for('create_team') }}" class="team-button">팀 생성</a>
+            <button class="delete-button" onclick="openDeleteTeamModal({{ current_team.t_id }})">현재 팀 삭제</button>
+        </div>
+        
         <h3>팀 선택</h3>
         <div class="team-buttons">
             {% for team in teams %}
@@ -11,6 +17,7 @@
             {% endfor %}
         </div>
     </div>
+
     <div class="center-content">
         {% if current_team %}
         <div class="logo-container">
@@ -51,10 +58,38 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 id="user-name"></h2>
+        <i class="fas fa-trash-alt" id="delete-button" onclick="openDeleteUserModal()"></i>
+             
         <p><strong>Nickname:</strong> <span id="user-nickname"></span></p>
         <p><strong>Email:</strong> <span id="user-email"></span></p>
         <p><strong>GitHub:</strong> <span id="user-git"></span></p>
+        
     </div>
 </div>
 
+<!-- 팀 삭제 확인 모달 -->
+<div id="deleteModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeDeleteModal()">&times;</span>
+        <h2 id="modal-team-name" style="color: #e74c3c;"></h2>
+        <p>삭제된 팀은 복구할 수 없습니다. 정말 삭제하시겠습니까?</p>
+        <form id="deleteForm" method="post">
+            <button type="submit" class="delete-confirm">삭제 확인</button>
+            <button type="button" class="delete-close" onclick="closeDeleteModal()">취소</button>
+        </form>
+    </div>
+</div>
+
+<!-- 사용자 삭제 확인 모달 -->
+<div id="deleteUserModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeUserDeleteModal()">&times;</span>
+        <h2 id="modal-user-name" style="color: #e74c3c;"></h2>
+        <p>삭제된 사용자는 복구할 수 없습니다. 정말 삭제하시겠습니까?</p>
+        <form id="deleteUserForm" method="post">
+            <button type="submit" class="delete-confirm" onclick="deleteUser()">삭제 확인</button>
+            <button type="button" class="delete-close" onclick="closeUserDeleteModal()">취소</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

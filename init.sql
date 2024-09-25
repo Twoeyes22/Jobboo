@@ -46,7 +46,7 @@ INSERT INTO team (t_name, t_intro, t_descript, t_logo, t_git) VALUES
 -- user 테이블 데이터 삽입
 INSERT INTO user (t_id, u_name, u_nickname, u_email, u_git, u_html, u_css, u_image) VALUES
 (1, 'minwoo','DevOps_Master', 'devops@jobboo.com', 'https://github.com/Twoeyes22', 'resume_html/minwoo.html', 'css/resume_css/minwoo.css', 'images/user_photos/minwoo.png'),
-(1, 'seoyeon','CloudGuru', 'cloud@masters.com', 'https://github.com/cloud_guru', 'resume_html/minwoo.html', '/css/cloud_guru.css', '/images/cloud_guru.jpg'),
+(1, 'seoyeon','seoni_eo', 'psy0201123@gmail.com', 'https://github.com/seoyeon0201', 'resume_html/psy0201123@gmail.com.html', '/css/resume_css/psy0201123@gmail.com.css', '/images/user_photos/psy0201123@gmail.com.png'),
 (1, 'honggoo','AI_Researcher', 'ai@innovators.com', 'https://github.com/ai_researcher', 'resume_html/minwoo.html', '/css/ai_researcher.css', '/images/ai_researcher.jpg'),
 (1, 'kwangjin','FrontendNinja', 'kwangjin@webwizards.com', 'https://github.com/frontend_ninja', 'resume_html/kwangjin.html', '/css/frontend_ninja.css', '/images/frontend_ninja.jpg'),
 (1, 'boyeong','FrontendNinja', 'boyeong@webwizards.com', 'https://github.com/frontend_ninja', 'resume_html/nabo2000@naver.com.html', '/css/frontend_ninja.css', 'images/user_photos/nabo2000@naver.com.jpeg'),
