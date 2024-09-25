@@ -1,0 +1,125 @@
+body {
+    font-family: '맑은 고딕', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    padding-top: 60px; 
+}
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand {
+    font-weight: bold;
+    color: #333;
+}
+.navbar-nav .nav-link {
+    color: #666;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.navbar-nav .nav-link:hover {
+    color: #000;
+}
+.header-section {
+    background-color: #4a5568;
+    color: white;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.header-section .photo img {
+    width: 150px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 0;
+}
+.header-section .info {
+    margin-left: 20px;
+}
+.header-section .info h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.header-section .info h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.header-section .info p {
+    margin: 0;
+    font-size: 16px;
+}
+.header-section .info .icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.header-section .info .icon i {
+    font-size: 15px;
+    margin-right: 10px;
+    color: #a0aec0;
+}
+.header-section .info .icon p {
+    color: #a0aec0;
+    transition: color 0.3s;
+}
+.header-section .info .icon:hover i,
+.header-section .info .icon:hover p {
+    color: #ffffff; 
+}
+
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4a5568;
+    padding-bottom: 10px;
+    color: #4a5568;
+}
+.work-experience, .education {
+    margin-bottom: 40px;
+}
+.work-experience .job, .education .course {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.job h3, .course h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+.job .date, .course .date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.job .description, .course .description {
+    font-size: 16px;
+    color: #555;
+}
+.skills-section {
+    margin-top: 30px;
+}
+.skills-section .skill-list {
+    list-style: none;
+    padding: 0;
+}
+.skills-section .skill-list li {
+    margin-bottom: 10px;
+    color: #4a5568;
+}
+.skills-section .skill-list li .progress {
+    height: 6px;
+    background-color: #e2e8f0;
+}
+.skills-section .skill-list li .progress-bar {
+    background-color: #4a5568;
+}
+section {
+position: relative;
+padding-top: 70px; 
+margin-top: -70px; 
+}

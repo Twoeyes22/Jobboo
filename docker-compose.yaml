@@ -7,13 +7,41 @@ services:
       - "8080:8080"
     volumes:
       - ./app:/app
-      - ./config.json:/app/config.json
+      - ./config/.env:/app/.env  # 호스트의 .env 파일을 컨테이너의 /app/.env로 마운트
+    environment:
+      - MYSQL_HOST=db
+    env_file:
+      - ./config/.env  # 환경 변수를 .env 파일에서 로드
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+
+  db:
+    image: mysql:8.0
+    command: 
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+      - --innodb-flush-log-at-trx-commit=0
+    restart: always
+    env_file:
+      - ./config/.env
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # 초기 데이터 SQL 파일 추가
+    ports:
+      - "3306:3306"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - MYSQL_CHARACTER_SET_SERVER=utf8mb4
+      - MYSQL_COLLATION_SERVER=utf8mb4_unicode_ci
+      - MYSQL_INIT_CONNECT=SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci
 
 volumes:
   app_data:
